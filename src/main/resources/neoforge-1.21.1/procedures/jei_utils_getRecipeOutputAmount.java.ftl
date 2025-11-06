@@ -30,8 +30,7 @@
 
             List<${recipeName}Recipe> recipes = new ArrayList<>();
             if(world instanceof Level level) {
-                net.minecraft.world.item.crafting.RecipeManager manager = level.getRecipeManager();
-                recipes.addAll(manager.getAllRecipesFor(${recipeName}Recipe.Type.INSTANCE).stream().map(RecipeHolder::value).collect(Collectors.toList()));
+                recipes.addAll(level.getRecipeManager().getAllRecipesFor(${recipeName}Recipe.Type.INSTANCE).stream().map(RecipeHolder::value).collect(Collectors.toList()));
             }
 
             boolean recipeInputNotConsumed = true;
@@ -42,7 +41,7 @@
                         <#assign i = entry?index>
 
                         <#if typeArray[i] == "MCItem">
-                            && recipe.validate(${nameArray[i]}ItemInput, recipe.${nameArray[i]}ItemInput())
+                            && RecipeUtils.validate(${nameArray[i]}ItemInput, recipe.${nameArray[i]}ItemInput())
                         </#if>
                     </#list>
                 ;
@@ -51,7 +50,7 @@
                         <#assign i = entry?index>
 
                         <#if typeArray[i] == "FluidStack">
-                            && recipe.validate(${nameArray[i]}FluidInput, recipe.${nameArray[i]}FluidInput())
+                            && RecipeUtils.validate(${nameArray[i]}FluidInput, recipe.${nameArray[i]}FluidInput())
                         </#if>
                     </#list>
                 ;
@@ -60,7 +59,7 @@
                         <#assign i = entry?index>
 
                         <#if typeArray[i] == "Boolean">
-                            && recipe.validate(${nameArray[i]}LogicInput, ${nameArray[i]}LogicInput())
+                            && RecipeUtils.validate(${nameArray[i]}LogicInput, ${nameArray[i]}LogicInput())
                         </#if>
                     </#list>
                 ;
@@ -69,7 +68,7 @@
                         <#assign i = entry?index>
 
                         <#if typeArray[i] == "Number">
-                            && recipe.validate(${nameArray[i]}NumberInput, recipe.${nameArray[i]}NumberInput())
+                            && RecipeUtils.validate(${nameArray[i]}NumberInput, recipe.${nameArray[i]}NumberInput())
                         </#if>
                     </#list>
                 ;
@@ -78,7 +77,7 @@
                         <#assign i = entry?index>
 
                         <#if typeArray[i] == "String">
-                            && recipe.validate(${nameArray[i]}TextInput, recipe.${nameArray[i]}TextInput())
+                            && RecipeUtils.validate(${nameArray[i]}TextInput, recipe.${nameArray[i]}TextInput())
                         </#if>
                     </#list>
                 ;
@@ -96,11 +95,11 @@
 
                             <#if consumeArray[i] == "TRUE">
                                 <#if typeArray[i] == "MCItem">
-                                    ${nameArray[i]}ItemInput.shrink(recipe.amount(recipe.${nameArray[i]}ItemInput()));
+                                    ${nameArray[i]}ItemInput.shrink(RecipeUtils.amount(recipe.${nameArray[i]}ItemInput()));
                                 <#elseif typeArray[i] == "FluidStack">
-                                    ${nameArray[i]}FluidInput.shrink(recipe.amount(recipe.${nameArray[i]}FluidInput()));
+                                    ${nameArray[i]}FluidInput.shrink(RecipeUtils.amount(recipe.${nameArray[i]}FluidInput()));
                                 <#elseif typeArray[i] == "Number">
-                                    ${nameArray[i]}NumberInput[0] -= recipe.amount(recipe.${nameArray[i]}NumberInput());
+                                    ${nameArray[i]}NumberInput[0] -= RecipeUtils.amount(recipe.${nameArray[i]}NumberInput());
                                 </#if>
                             </#if>
                         </#list>

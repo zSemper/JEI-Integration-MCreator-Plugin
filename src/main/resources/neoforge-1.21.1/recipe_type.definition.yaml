@@ -4,6 +4,8 @@ global_templates:
   - template: recipe_type/jei_plugin.java.ftl
     name: "@SRCROOT/@BASEPACKAGEPATH/init/@JavaModNameJeiPlugin.java"
     condition: ${settings.getMCreatorDependenciesRaw()?seq_contains("jei")}
+  - template: recipe_type/recipe_utils.java.ftl
+    name: "@SRCROOT/@BASEPACKAGEPATH/recipe/RecipeUtils.java"
 
 templates:
   - template: recipe_type/recipe.java.ftl

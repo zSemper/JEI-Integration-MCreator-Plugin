@@ -67,9 +67,9 @@ public class ${name}JeiCategory implements IRecipeCategory<RecipeHolder<${name}R
         <#list data.slotList as slot>
             <#if slot.io == "Input">
                 <#if slot.type == "Item">
-                    builder.addSlot(RecipeIngredientRole.INPUT, ${slot.x}, ${slot.y}).addIngredients(VanillaTypes.ITEM_STACK, getItemStacks(recipe.value().${slot.name}ItemInput()));
+                    builder.addSlot(RecipeIngredientRole.INPUT, ${slot.x}, ${slot.y}).addIngredients(VanillaTypes.ITEM_STACK, RecipeUtils.getItemStacks(recipe.value().${slot.name}ItemInput()));
                 <#elseif slot.type == "Fluid">
-                    builder.addSlot(RecipeIngredientRole.INPUT, ${slot.x}, ${slot.y}).addIngredients(NeoForgeTypes.FLUID_STACK, getFluidStacks(recipe.value().${slot.name}FluidInput()))
+                    builder.addSlot(RecipeIngredientRole.INPUT, ${slot.x}, ${slot.y}).addIngredients(NeoForgeTypes.FLUID_STACK, RecipeUtils.getFluidStacks(recipe.value().${slot.name}FluidInput()))
                     <#if slot.fullTank>
                         .setFluidRenderer(${slot.tankCapacity}, false, 16, ${slot.height});
                     <#else>
@@ -93,38 +93,4 @@ public class ${name}JeiCategory implements IRecipeCategory<RecipeHolder<${name}R
             </#if>
         </#list>
     }
-
-    // JeiI: Returns a List<ItemStack> based on either a SizedIngredient or Optional<SizedIngredient>
-    private List<ItemStack> getItemStacks(Object in) {
-        if(in instanceof SizedIngredient sized) {
-            return Arrays.asList(sized.getItems());
-        } else if(in instanceof Ingredient ingre) {
-            return Arrays.asList(ingre.getItems());
-        } else if(in instanceof Optional<?> opt) {
-            if(opt.isPresent()) {
-                Object o = opt.get();
-                if(o instanceof SizedIngredient sizedO) {
-                    return Arrays.asList(sizedO.getItems());
-                } else if(o instanceof Ingredient ingreO) {
-                    return Arrays.asList(ingreO.getItems());
-                }
-            }
-        }
-        return new ArrayList<>();
-    }
-
-    // JeiI: Returns a List<FluidStack> based on either a SizedFluidIngredient or Optional<SizedFluidIngredient>
-	private List<FluidStack> getFluidStacks(Object in) {
-		if(in instanceof SizedFluidIngredient sized) {
-			return Arrays.asList(sized.getFluids());
-		} else if(in instanceof Optional<?> opt) {
-			if(opt.isPresent()) {
-				Object o = opt.get();
-				if(opt.get() instanceof SizedFluidIngredient sizedO) {
-					return Arrays.asList(sizedO.getFluids());
-				}
-			}
-		}
-		return new ArrayList<>();
-	}
 }
