@@ -28,6 +28,7 @@ import net.mcreator.ui.modgui.ModElementGUI;
 import net.mcreator.ui.validation.component.VTextField;
 import net.mcreator.ui.workspace.resources.TextureType;
 import net.mcreator.util.StringUtils;
+import net.mcreator.util.TestUtil;
 import net.mcreator.workspace.elements.ModElement;
 import net.zsemper.jeii.parts.ClickList;
 import net.zsemper.jeii.parts.SlotList;
@@ -122,30 +123,30 @@ public class RecipeTypeGUI extends ModElementGUI<RecipeType> implements IBlockly
         return Set.of(this.blocklyPanel);
     }
 
-    private synchronized void regenerateRenders() {
+    @Override
+    public synchronized List<BlocklyCompileNote> regenerateBlockAssemblies(boolean jsEventTriggeredChange) {
         BlocklyBlockCodeGenerator generator = new BlocklyBlockCodeGenerator(externalBlocks, mcreator.getGeneratorStats().getBlocklyBlocks(Constants.RENDER_EDITOR));
-
         BlocklyToJava code;
+
         try {
             code = new BlocklyToJava(
-                mcreator.getWorkspace(),
-                modElement,
-                Constants.RENDER_EDITOR,
-                blocklyPanel.getXML(),
-                null,
-                new ProceduralBlockCodeGenerator(generator),
-                new OutputBlockCodeGenerator(generator)
+                    mcreator.getWorkspace(),
+                    modElement,
+                    Constants.RENDER_EDITOR,
+                    blocklyPanel.getXML(),
+                    null,
+                    new ProceduralBlockCodeGenerator(generator),
+                    new OutputBlockCodeGenerator(generator)
             );
         } catch (TemplateGeneratorException e) {
-            return;
+            TestUtil.failIfTestingEnvironment();
+            return List.of();
         }
 
         List<BlocklyCompileNote> compileNotes = code.getCompileNotes();
-
-        SwingUtilities.invokeLater(() -> {
-            compileNotesPanel.updateCompileNotes(compileNotes);
-            changeListeners.forEach(l -> l.blocklyChanged(blocklyPanel));
-        });
+        SwingUtilities.invokeLater(() -> compileNotesPanel.updateCompileNotes(compileNotes));
+        changeListeners.forEach(l -> l.blocklyChanged(blocklyPanel, jsEventTriggeredChange));
+        return compileNotes;
     }
 
     @Override
@@ -160,21 +161,17 @@ public class RecipeTypeGUI extends ModElementGUI<RecipeType> implements IBlockly
             BlocklyLoader.INSTANCE.getBlockLoader(Constants.RENDER_EDITOR).loadBlocksAndCategoriesInPanel(blocklyPanel, ToolboxType.EMPTY);
 
             blocklyPanel.addChangeListener(
-                    changeEvent -> new Thread(RecipeTypeGUI.this::regenerateRenders, "DrawRegenerate").start()
+                    changeEvent -> new Thread(() -> regenerateBlockAssemblies(changeEvent.getSource() instanceof BlocklyPanel), "RenderRegenerate").start()
             );
 
             if (!isEditingMode()) {
-                blocklyPanel.setXML("<xml><block type=\"render_start\" deletable=\"false\" x=\"40\" y=\"40\"></block></xml>");
+                blocklyPanel.setXML("<xml xmlns=\"https://developers.google.com/blockly/xml\"><block type=\"render_start\" deletable=\"false\" x=\"40\" y=\"40\"></block></xml>");
             }
         });
 
-        enableTables.addActionListener(e -> {
-            tables.setEnabled(enableTables.isSelected());
-        });
+        enableTables.addActionListener(e -> tables.setEnabled(enableTables.isSelected()));
 
-        enableClickArea.addActionListener(e -> {
-            clickAreaList.setEnabled(enableClickArea.isSelected());
-        });
+        enableClickArea.addActionListener(e -> clickAreaList.setEnabled(enableClickArea.isSelected()));
 
         // Globals
         JPanel gProps = new JPanel(new BorderLayout(2, 2));

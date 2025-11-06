@@ -1,6 +1,6 @@
 package ${package}.init;
 
-@EventBusSubscriber(modid = ${JavaModName}.MODID, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber
 public class ${JavaModName}RecipeTypes {
     public static final DeferredRegister<RecipeType<?>> RECIPE_TYPES = DeferredRegister.create(BuiltInRegistries.RECIPE_TYPE, "${modid}");
     public static final DeferredRegister<RecipeSerializer<?>> SERIALIZERS = DeferredRegister.create(BuiltInRegistries.RECIPE_SERIALIZER, "${modid}");
@@ -20,23 +20,22 @@ public class ${JavaModName}RecipeTypes {
 		});
     }
 
-    @EventBusSubscriber
+    @SubscribeEvent
+    public static void sync(OnDatapackSyncEvent event) {
+        <#list recipe_types as type>
+            event.sendRecipes(${type.getModElement().getName()}Recipe.Type.INSTANCE);
+        </#list>
+    }
+
+
+
+    @EventBusSubscriber(value = Dist.CLIENT)
     private static class RecipeSync {
-
-        @SubscribeEvent
-        public static void sync(OnDatapackSyncEvent event) {
-            <#list recipe_types as type>
-                event.sendRecipes(${type.getModElement().getName()}Recipe.Type.INSTANCE);
-            </#list>
-        }
-
-        @OnlyIn(Dist.CLIENT)
         @SubscribeEvent
         public static void receive(RecipesReceivedEvent event) {
             recipeMap = event.getRecipeMap();
         }
 
-        @OnlyIn(Dist.CLIENT)
         @SubscribeEvent
         public static void clear(ClientPlayerNetworkEvent.LoggingOut event) {
             recipeMap = null;

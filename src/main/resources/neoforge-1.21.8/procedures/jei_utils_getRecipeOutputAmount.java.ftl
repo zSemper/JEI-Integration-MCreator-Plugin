@@ -88,7 +88,7 @@
                     <#if field$type == "ItemStack">
                         result = recipe.getItemStackResult("${field$name}").getCount();
                     <#elseif field$type == "FluidStack">
-                        result = recipe.getFluidStackResult("${field$name}").getamount();
+                        result = recipe.getFluidStackResult("${field$name}").getAmount();
                     </#if>
 
                     if(recipeInputNotConsumed) {

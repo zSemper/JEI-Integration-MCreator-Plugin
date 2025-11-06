@@ -1,7 +1,7 @@
 {
   "id": "jei_integration",
   "supportedversions": [
-    2025002
+    2025003
   ],
   "weight": 3001,
   "javaplugin": "net.zsemper.jeii.ModPlugin",
