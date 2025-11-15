@@ -26,7 +26,6 @@ body:
       label: Minecraft Version
       description: Which minecraft version did you use?
       options:
-        - 1.20.1 Forge
         - 1.21.1 NeoForge
         - 1.21.4 NeoForge
         - 1.21.8 NeoForge
@@ -38,7 +37,6 @@ body:
       label: MCreator Version
       description: Which mcreator version did you use?
       options:
-        - MCreator 2024.4
         - MCreator 2025.2
         - MCreator 2025.3
         - Other (specify in additional context)
