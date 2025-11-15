@@ -7,7 +7,7 @@
   "javaplugin": "net.zsemper.jeii.ModPlugin",
   "info": {
     "name": "JEI Integration",
-    "version": "1.4.3",
+    "version": "1.4.4",
     "description": "Integrates custom recipes and JEI into your mods",
     "author": "zSemper"
   }

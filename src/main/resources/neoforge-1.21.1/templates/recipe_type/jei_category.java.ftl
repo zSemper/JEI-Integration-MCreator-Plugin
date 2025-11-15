@@ -16,7 +16,11 @@ public class ${name}JeiCategory implements IRecipeCategory<RecipeHolder<${name}R
 
     public ${name}JeiCategory(IGuiHelper helper) {
         this.background = helper.createDrawable(TEXTURE, ${data.x}, ${data.y}, ${data.width}, ${data.height});
-        this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(${mappedMCItemToItem(data.icon)}));
+        <#if data.icon == "">
+            this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(Blocks.BARRIER));
+        <#else>
+            this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK,${mappedMCItemToItemStackCode(data.icon)});
+        </#if>
     }
 
     @Override
