@@ -16,7 +16,11 @@ public class ${name}JeiCategory implements IRecipeCategory<RecipeHolder<${name}R
 
     public ${name}JeiCategory(IGuiHelper helper) {
         this.background = helper.createDrawable(TEXTURE, ${data.x}, ${data.y}, ${data.width}, ${data.height});
-        this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(${mappedMCItemToItem(data.icon)}));
+        <#if data.icon == "">
+            this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(Blocks.BARRIER));
+        <#else>
+            this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK,${mappedMCItemToItemStackCode(data.icon)});
+        </#if>
     }
 
     @Override
@@ -48,8 +52,9 @@ public class ${name}JeiCategory implements IRecipeCategory<RecipeHolder<${name}R
     public void draw(RecipeHolder<${name}Recipe> recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
         this.background.draw(guiGraphics);
         <#if data.enableRendering>
-            Font font = Minecraft.getInstance().font;
-            long ticks = Minecraft.getInstance().level.getGameTime();
+            Minecraft minecraft = Minecraft.getInstance();
+            int tooltipX = (int) minecraft.mouseHandler.getScaledXPos(minecraft.getWindow());
+            int tooltipY = (int) minecraft.mouseHandler.getScaledYPos(minecraft.getWindow());
 
             <#list data.slotList as slot>
                 <#if slot.io == "Render">

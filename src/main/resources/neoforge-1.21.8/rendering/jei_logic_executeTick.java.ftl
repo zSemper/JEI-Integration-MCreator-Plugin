@@ -1,5 +1,5 @@
 {
-    if(ticks % ${input$tick} == 0) {
+    if(minecraft.level.getGameTime() % ${input$tick} == 0) {
         ${statement$code}
     }
 }

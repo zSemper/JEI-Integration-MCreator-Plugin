@@ -2,5 +2,5 @@
 <#assign wid = input$width>
 
 (
-	((int) (ticks % ${dur}) * (${wid} + 1)) / ${dur}
+	((int) (minecraft.level.getGameTime() % ${dur}) * (${wid} + 1)) / ${dur}
 )

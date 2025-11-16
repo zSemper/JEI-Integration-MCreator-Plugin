@@ -2,5 +2,5 @@
 <#assign hei = input$height>
 
 (
-	((int) (ticks % ${dur}) * (${hei} + 1)) / ${dur}
+	((int) (minecraft.level.getGameTime() % ${dur}) * (${hei} + 1)) / ${dur}
 )
