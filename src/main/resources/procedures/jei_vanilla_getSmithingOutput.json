@@ -1,0 +1,34 @@
+{
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "template",
+      "check": "MCItem"
+    },
+    {
+      "type": "input_value",
+      "name": "base",
+      "check": "MCItem"
+    },
+    {
+      "type": "input_value",
+      "name": "addition",
+      "check": "MCItem"
+    },
+    {
+      "type": "input_dummy"
+    }
+  ],
+  "inputsInline": false,
+  "output": "MCItem",
+  "colour": "#a55b67",
+  "mcreator": {
+    "group": 5,
+    "toolbox_id": "jei_vanilla",
+    "inputs": [
+      "template",
+      "base",
+      "addition"
+    ]
+  }
+}

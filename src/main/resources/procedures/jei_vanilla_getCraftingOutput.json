@@ -1,0 +1,83 @@
+{
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "r1c1",
+      "check": "MCItem"
+    },
+    {
+      "type": "input_value",
+      "name": "r1c2",
+      "check": "MCItem"
+    },
+    {
+      "type": "input_value",
+      "name": "r1c3",
+      "check": "MCItem"
+    },
+    {
+      "type": "input_value",
+      "name": "r2c1",
+      "check": "MCItem"
+    },
+    {
+      "type": "input_value",
+      "name": "r2c2",
+      "check": "MCItem"
+    },
+    {
+      "type": "input_value",
+      "name": "r2c3",
+      "check": "MCItem"
+    },
+    {
+      "type": "input_value",
+      "name": "r3c1",
+      "check": "MCItem"
+    },
+    {
+      "type": "input_value",
+      "name": "r3c2",
+      "check": "MCItem"
+    },
+    {
+      "type": "input_value",
+      "name": "r3c3",
+      "check": "MCItem"
+    },
+    {
+      "type": "input_dummy",
+      "name": "title"
+    },
+    {
+      "type": "input_dummy",
+      "name": "row1"
+    },
+    {
+      "type": "input_dummy",
+      "name": "row2"
+    },
+    {
+      "type": "input_dummy",
+      "name": "row3"
+    }
+  ],
+  "inputsInline": false,
+  "output": "MCItem",
+  "colour": "#a55b67",
+  "mcreator": {
+    "group": 0,
+    "toolbox_id": "jei_vanilla",
+    "inputs": [
+      "r1c1",
+      "r1c2",
+      "r1c3",
+      "r2c1",
+      "r2c2",
+      "r2c3",
+      "r3c1",
+      "r3c2",
+      "r3c3"
+    ]
+  }
+}
