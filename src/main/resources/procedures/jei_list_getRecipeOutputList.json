@@ -27,7 +27,7 @@
   "output": "OutputList",
   "colour": "#a55ba5",
   "mcreator": {
-    "group": 1,
+    "group": "01",
     "toolbox_id": "jei_result_lists",
     "toolbox_init": [
       "<mutation inputs=\"1\"></mutation>"
@@ -67,9 +67,6 @@
         "name": "world",
         "type": "world"
       }
-    ],
-    "required_apis": [
-      "jei"
     ]
   }
 }

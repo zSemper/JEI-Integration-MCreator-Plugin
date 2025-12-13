@@ -20,7 +20,7 @@
   "inputsInline": true,
   "colour": "#5b67a5",
   "mcreator": {
-    "group": "text04",
+    "group": "04",
     "toolbox_id": "jei_text",
     "toolbox_init": [
       "<value name=\"start\"><block type=\"jei_number_input\"><field name=\"number\">0</field></block></value>"

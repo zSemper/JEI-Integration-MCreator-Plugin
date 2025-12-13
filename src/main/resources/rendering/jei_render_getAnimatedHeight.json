@@ -15,7 +15,7 @@
   "inputsInline": true,
   "colour": "#67a55b",
   "mcreator": {
-    "group": "render05",
+    "group": "05",
     "toolbox_id": "jei_category_rendering",
     "toolbox_init": [
       "<value name=\"duration\"><block type=\"jei_number_input\"><field name=\"number\">0</field></block></value>",

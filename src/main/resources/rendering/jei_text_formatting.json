@@ -15,7 +15,7 @@
   "inputsInline": true,
   "colour": "#5ba58c",
   "mcreator": {
-    "group": "text17",
+    "group": "17",
     "toolbox_id": "jei_text",
     "toolbox_init": [
       "<value name=\"format\"><block type=\"jei_text_input\"><field name=\"text\">#,###</field></block></value>"

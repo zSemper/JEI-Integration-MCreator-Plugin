@@ -47,7 +47,7 @@ javafx {
 }
 
 tasks.jar {
-    archiveFileName.set("jei_integration_v1.5.0_25.2.zip")
+    archiveFileName.set("jei_integration_v1.5.1_25.2.zip")
 
     from {
         configurations.export.collect { it.isDirectory() ? it : zipTree(it) }

@@ -11,7 +11,7 @@
   "output": "Boolean",
   "colour": "#5b80a5",
   "mcreator": {
-    "group": 2,
+    "group": "02",
     "toolbox_id": "jei_utils",
     "toolbox_init": [
       "<mutation inputs=\"1\"></mutation>"
@@ -49,9 +49,6 @@
         "name": "world",
         "type": "world"
       }
-    ],
-    "required_apis": [
-      "jei"
     ]
   }
 }

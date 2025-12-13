@@ -100,25 +100,6 @@ public class InformationGUI extends ModElementGUI<Information> {
         addPage(global);
     }
 
-    protected AggregatedValidationResult validatePage(int page) {
-        if (!mcreator.getWorkspaceSettings().getDependencies().contains("jei")) {
-            return new AggregatedValidationResult.FAIL(L10N.t("elementGui.jei.requiresJEI", Constants.NO_PARAMS));
-        }
-        if (type.getSelectedItem().equals("Item")) {
-            if (items.getListElements().isEmpty()) {
-                return new AggregatedValidationResult.FAIL(L10N.t("elementGui.information.errorEmptyItem", Constants.NO_PARAMS));
-            }
-        } else {
-            if (fluids.getListElements().isEmpty()) {
-                return new AggregatedValidationResult.FAIL(L10N.t("elementGui.information.errorEmptyFluid", Constants.NO_PARAMS));
-            }
-        }
-        if (info.getTextList().isEmpty()) {
-            return new AggregatedValidationResult.FAIL(L10N.t("elementGui.information.errorEmptyInfo", Constants.NO_PARAMS));
-        }
-        return new AggregatedValidationResult.PASS();
-    }
-
     @Override
     protected void openInEditingMode(Information element) {
         type.setSelectedItem(element.type);

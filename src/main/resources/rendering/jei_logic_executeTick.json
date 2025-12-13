@@ -18,7 +18,7 @@
   "nextStatement": null,
   "colour": "#67a55b",
   "mcreator": {
-    "group": "logic08",
+    "group": "08",
     "toolbox_id": "jei_logic",
     "toolbox_init": [
       "<value name=\"tick\"><block type=\"jei_number_input\"><field name=\"number\">0</field></block></value>"

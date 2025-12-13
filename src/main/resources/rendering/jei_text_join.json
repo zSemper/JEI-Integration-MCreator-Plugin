@@ -9,7 +9,7 @@
   "output": "String",
   "colour": "#5ba58c",
   "mcreator": {
-    "group": "text02",
+    "group": "02",
     "toolbox_id": "jei_text",
     "toolbox_init": [
       "<mutation inputs=\"1\"></mutation>"

@@ -15,7 +15,7 @@
   "colour": "#5b80a5",
   "mutator": "if_mutator",
   "mcreator": {
-    "group": "logic01",
+    "group": "01",
     "toolbox_id": "jei_logic",
     "inputs": [
       "IF0"

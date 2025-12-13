@@ -9,7 +9,7 @@
   "output": "String",
   "colour": "#5ba58c",
   "mcreator": {
-    "group": "text01",
+    "group": "01",
     "toolbox_id": "jei_text",
     "fields": [
       "text"

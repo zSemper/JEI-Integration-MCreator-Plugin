@@ -12,7 +12,7 @@
   "output": "Boolean",
   "colour": "#5b80a5",
   "mcreator": {
-    "group": "logic04",
+    "group": "04",
     "toolbox_id": "jei_logic",
     "fields": [
       "bool"

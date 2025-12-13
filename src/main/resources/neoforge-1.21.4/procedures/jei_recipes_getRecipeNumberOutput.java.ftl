@@ -27,17 +27,9 @@
             ${head?join(", ")}
         ) {
             double result = 0d;
-
-            List<${recipeName}Recipe> recipes = new ArrayList<>();
-            if(world instanceof ServerLevel slevel) {
-                recipes.addAll(slevel.recipeAccess().recipeMap().byType(${recipeName}Recipe.Type.INSTANCE).stream().map(RecipeHolder::value).collect(Collectors.toList()));
-            } else if(world instanceof ClientLevel clevel) {
-                recipes.addAll(${JavaModName}RecipeTypes.recipeMap.byType(${recipeName}Recipe.Type.INSTANCE).stream().map(RecipeHolder::value).collect(Collectors.toList()));
-            }
-
             boolean recipeInputNotConsumed = true;
 
-            for(${recipeName}Recipe recipe : recipes) {
+            for(${recipeName}Recipe recipe : RecipeUtils.getRecipes(world, ${recipeName}Recipe.Type.INSTANCE)) {
                 boolean _itemMatch = true
                     <#list input_list$entry as entry>
                         <#assign i = entry?index>

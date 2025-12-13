@@ -9,7 +9,7 @@
   "output": "Number",
   "colour": "#5b67a5",
   "mcreator": {
-    "group": "number04",
+    "group": "04",
     "toolbox_id": "jei_number",
     "inputs": [
       "text"

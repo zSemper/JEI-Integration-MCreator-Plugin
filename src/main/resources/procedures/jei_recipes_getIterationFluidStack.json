@@ -1,0 +1,30 @@
+{
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "iterator",
+      "check": "RecipeIterator"
+    },
+    {
+      "type": "field_lowercase_input",
+      "name": "name",
+      "text": "name"
+    }
+  ],
+  "inputsInline": true,
+  "output": "FluidStack",
+  "colour": "#00c8d5",
+  "mcreator": {
+    "group": "09",
+    "toolbox_id": "jei_recipes",
+    "toolbox_init": [
+      "<value name=\"iterator\"><block deletable=\"false\" movable=\"false\" enabled=\"false\" type=\"jei_recipes_iterator\"></block></value>"
+    ],
+    "inputs": [
+      "iterator"
+    ],
+    "fields": [
+      "name"
+    ]
+  }
+}

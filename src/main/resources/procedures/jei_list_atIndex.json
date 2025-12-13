@@ -26,7 +26,7 @@
   "output": null,
   "colour": "#a55ba5",
   "mcreator": {
-    "group": 4,
+    "group": "04",
     "toolbox_id": "jei_result_lists",
     "toolbox_init": [
       "<value name=\"index\"><block type=\"math_number\"><field name=\"NUM\">0</field></block></value>"
