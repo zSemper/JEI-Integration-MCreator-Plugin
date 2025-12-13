@@ -209,7 +209,7 @@ public record ${name}Recipe(${varsIO?join(", ")}) implements Recipe<RecipeInput>
                         </#if>
                     <#elseif slot.type == "Text">
                         <#if slot.optional>
-                            <#assign ingre += ["Codec.STRING.optionalFieldOf(\"${slot.name}\", ${slot.defaultString}).forGetter(${name}Recipe::${slot.name}${slot.type}${slot.io})"]>
+                            <#assign ingre += ["Codec.STRING.optionalFieldOf(\"${slot.name}\", \"${slot.defaultString}\").forGetter(${name}Recipe::${slot.name}${slot.type}${slot.io})"]>
                         <#else>
                             <#assign ingre += ["Codec.STRING.fieldOf(\"${slot.name}\").forGetter(${name}Recipe::${slot.name}${slot.type}${slot.io})"]>
                         </#if>

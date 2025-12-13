@@ -1,0 +1,3 @@
+(
+    RecipeUtils.unwrap(${input$iterator}.${field$name}FluidOutput(), FluidStack.class, FluidStack.EMPTY)
+)

@@ -25,7 +25,7 @@
   "output": "Boolean",
   "colour": "#5b80a5",
   "mcreator": {
-    "group": 5,
+    "group": "05",
     "toolbox_id": "jei_result_lists",
     "toolbox_init": [
     ],

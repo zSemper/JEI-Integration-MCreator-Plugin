@@ -27,17 +27,9 @@
             ${head?join(", ")}
         ) {
             int result = 0;
-
-            List<${recipeName}Recipe> recipes = new ArrayList<>();
-            if(world instanceof ServerLevel slevel) {
-                recipes.addAll(slevel.recipeAccess().recipeMap().byType(${recipeName}Recipe.Type.INSTANCE).stream().map(RecipeHolder::value).collect(Collectors.toList()));
-            } else if(world instanceof ClientLevel clevel) {
-                recipes.addAll(${JavaModName}RecipeTypes.recipeMap.byType(${recipeName}Recipe.Type.INSTANCE).stream().map(RecipeHolder::value).collect(Collectors.toList()));
-            }
-
             boolean recipeInputNotConsumed = true;
 
-            for(${recipeName}Recipe recipe : recipes) {
+            for(${recipeName}Recipe recipe : RecipeUtils.getRecipes(world, ${recipeName}Recipe.Type.INSTANCE)) {
                 boolean _itemMatch = true
                     <#list input_list$entry as entry>
                         <#assign i = entry?index>
@@ -61,7 +53,7 @@
                         <#assign i = entry?index>
 
                         <#if typeArray[i] == "Boolean">
-                            && RecipeUtils.validate(${nameArray[i]}LogicInput, ${nameArray[i]}LogicInput())
+                            && RecipeUtils.validate(${nameArray[i]}LogicInput, recipe.${nameArray[i]}LogicInput())
                         </#if>
                     </#list>
                 ;

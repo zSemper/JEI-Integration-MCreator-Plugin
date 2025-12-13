@@ -5,6 +5,36 @@ public class RecipeUtils {
         throw new AssertionError("Recipe Utils should NEVER be initialized");
     }
 
+    // Returns a list of all recipes from the given recipe type
+    public static <I extends RecipeInput, R extends Recipe<I>> List<R> getRecipes(LevelAccessor world, RecipeType<R> type) {
+        List<R> recipes = new ArrayList<>();
+
+        if (world instanceof Level level) {
+            recipes.addAll(level.getRecipeManager().getAllRecipesFor(type).stream().map(RecipeHolder::value).toList());
+        }
+
+        return recipes;
+    }
+
+    // Generic method for handling Optional<>
+    public static <T> T unwrap(Object value, Class<T> clazz, T defaultValue) {
+        if (value == null) {
+            return defaultValue;
+        }
+
+        if (clazz.isInstance(value)) {
+            return clazz.cast(value);
+        }
+
+        if (value instanceof Optional<?> opt && opt.isPresent()) {
+            if (clazz.isInstance(opt.get())) {
+                return clazz.cast(opt.get());
+            }
+        }
+
+        return defaultValue;
+    }
+
     // Gets all inputs from the recipe object as a List<ItemStack> of all possible values
     public static List<ItemStack> getItemStacks(Object in) {
         if(in instanceof SizedIngredient sized) {

@@ -10,7 +10,7 @@
   "output": "Number",
   "colour": "#5b67a5",
   "mcreator": {
-    "group": 8,
+    "group": "08",
     "toolbox_id": "jei_utils",
     "fields": [
       "name"

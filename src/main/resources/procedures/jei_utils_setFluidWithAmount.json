@@ -31,7 +31,7 @@
   "nextStatement": null,
   "colour": "#00c8d5",
   "mcreator": {
-    "group": 6,
+    "group": "06",
     "toolbox_id": "jei_utils",
     "toolbox_init": [
       "<value name=\"x\"><block type=\"coord_x\"></block></value>",

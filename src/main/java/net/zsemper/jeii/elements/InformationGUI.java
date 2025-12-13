@@ -9,7 +9,6 @@ import net.mcreator.ui.init.L10N;
 import net.mcreator.ui.minecraft.FluidListField;
 import net.mcreator.ui.minecraft.MCItemListField;
 import net.mcreator.ui.modgui.ModElementGUI;
-import net.mcreator.ui.validation.AggregatedValidationResult;
 import net.mcreator.workspace.elements.ModElement;
 import net.zsemper.jeii.utils.Constants;
 import net.zsemper.jeii.utils.GuiUtils;
@@ -98,25 +97,6 @@ public class InformationGUI extends ModElementGUI<Information> {
 
         global.add(PanelUtils.totalCenterInPanel(GuiUtils.BORDER_PANEL("elementGui.information.information", main)));
         addPage(global);
-    }
-
-    protected AggregatedValidationResult validatePage(int page) {
-        if (!mcreator.getWorkspaceSettings().getDependencies().contains("jei")) {
-            return new AggregatedValidationResult.FAIL(L10N.t("elementGui.jei.requiresJEI", Constants.NO_PARAMS));
-        }
-        if (type.getSelectedItem().equals("Item")) {
-            if (items.getListElements().isEmpty()) {
-                return new AggregatedValidationResult.FAIL(L10N.t("elementGui.information.errorEmptyItem", Constants.NO_PARAMS));
-            }
-        } else {
-            if (fluids.getListElements().isEmpty()) {
-                return new AggregatedValidationResult.FAIL(L10N.t("elementGui.information.errorEmptyFluid", Constants.NO_PARAMS));
-            }
-        }
-        if (info.getTextList().isEmpty()) {
-            return new AggregatedValidationResult.FAIL(L10N.t("elementGui.information.errorEmptyInfo", Constants.NO_PARAMS));
-        }
-        return new AggregatedValidationResult.PASS();
     }
 
     @Override

@@ -25,7 +25,7 @@
   "output": "MCItem",
   "colour": "#a55b67",
   "mcreator": {
-    "group": 3,
+    "group": "03",
     "toolbox_id": "jei_utils",
     "toolbox_init": [
       "<value name=\"x\"><block type=\"coord_x\"></block></value>",

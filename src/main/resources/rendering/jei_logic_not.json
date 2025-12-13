@@ -9,7 +9,7 @@
   "output": "Boolean",
   "colour": "#5b80a5",
   "mcreator": {
-    "group": "logic03",
+    "group": "03",
     "toolbox_id": "jei_logic",
     "inputs": [
       "not"

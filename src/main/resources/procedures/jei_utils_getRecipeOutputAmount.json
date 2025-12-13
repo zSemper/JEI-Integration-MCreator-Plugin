@@ -24,7 +24,7 @@
   "output": "Number",
   "colour": "#5b67a5",
   "mcreator": {
-    "group": 1,
+    "group": "01",
     "toolbox_id": "jei_utils",
     "toolbox_init": [
       "<mutation inputs=\"1\"></mutation>"
@@ -64,9 +64,6 @@
         "name": "world",
         "type": "world"
       }
-    ],
-    "required_apis": [
-      "jei"
     ]
   }
 }

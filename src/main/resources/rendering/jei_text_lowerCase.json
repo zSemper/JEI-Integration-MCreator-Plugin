@@ -10,7 +10,7 @@
   "inputsInline": true,
   "colour": "#5ba58c",
   "mcreator": {
-    "group": "text16",
+    "group": "16",
     "toolbox_id": "jei_text",
     "inputs": [
       "text"

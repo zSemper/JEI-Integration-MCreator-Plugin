@@ -10,7 +10,7 @@
   "output": "MCItem",
   "colour": "#a55b67",
   "mcreator": {
-    "group": 4,
+    "group": "04",
     "toolbox_id": "jei_vanilla",
     "inputs": [
       "item"

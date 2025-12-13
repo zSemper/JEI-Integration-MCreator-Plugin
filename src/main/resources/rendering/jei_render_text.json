@@ -31,7 +31,7 @@
   "nextStatement": null,
   "colour": "#67a55b",
   "mcreator": {
-    "group": "render01",
+    "group": "01",
     "toolbox_id": "jei_category_rendering",
     "toolbox_init": [
       "<value name=\"xPos\"><block type=\"jei_number_input\"><field name=\"number\">0</field></block></value>",

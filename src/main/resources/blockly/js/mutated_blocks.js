@@ -1,5 +1,5 @@
 /**
- * Mutator for recipe ingredients
+ * Mutator for recipe ingredients with output
  */
 Blockly.Blocks["ingredient_mutator_container"] = {
     init: function () {
@@ -86,6 +86,29 @@ Blockly.Extensions.registerMutator(
 );
 
 
+/**
+ * Mutator for recipe ingredients
+ */
+Blockly.Blocks["iterable_mutator_container"] = {
+    init: function () {
+        this.appendDummyInput()
+            .appendField(javabridge.t("blockly.block.ingredient_mutator.container"));
+        this.appendStatementInput("STACK");
+        this.contextMenu = false;
+        this.setColour("#67a55b");
+    }
+};
+
+Blockly.Blocks["iterable_mutator_input"] = {
+    init: function () {
+        this.appendDummyInput()
+            .appendField(javabridge.t("blockly.block.ingredient_mutator.input"));
+        this.setPreviousStatement(true);
+        this.setNextStatement(true);
+        this.contextMenu = false;
+        this.setColour("#67a55b");
+    }
+};
 
 /**
  * Render Blockly: Text Join

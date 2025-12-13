@@ -8,19 +8,16 @@
                     return sized.ingredient().isEmpty() ? "" : sized.getItems()[0].getHoverName().getString();
                 } else if(item instanceof Ingredient ingre) {
                     return ingre.isEmpty() ? "" : ingre.getItems()[0].getHoverName().getString();
-                } else if(item instanceof Optional<?> opt) {
-                    if(opt.isPresent()) {
-                        Object o = opt.get();
-                        if(o instanceof SizedIngredient sizedO) {
-                            return sizedO.ingredient().isEmpty() ? "" : sizedO.getItems()[0].getHoverName().getString();
-                        } else if(o instanceof Ingredient ingreO) {
-                            return ingreO.isEmpty() ? "" : ingreO.getItems()[0].getHoverName().getString();
-                        }
+                } else if(item instanceof Optional<?> opt && opt.isPresent()) {
+                    if(opt.get() instanceof SizedIngredient sizedO) {
+                        return sizedO.ingredient().isEmpty() ? "" : sizedO.getItems()[0].getHoverName().getString();
+                    } else if(opt.get() instanceof Ingredient ingreO) {
+                        return ingreO.isEmpty() ? "" : ingreO.getItems()[0].getHoverName().getString();
                     }
                 }
                 return "";
             <#elseif io == "Output">
-                return recipe.value().${field$name}Item${io}().getHoverName().getString();
+                return RecipeUtils.unwrap(recipe.value().${field$name}Item${io}(), ItemStack.class, ItemStack.EMPTY).getHoverName().getString();
             </#if>
         }
     }.getItemStackName(recipe.value().${field$name}Item${io}())

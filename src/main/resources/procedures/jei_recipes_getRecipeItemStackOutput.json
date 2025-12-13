@@ -16,7 +16,7 @@
   "output": "MCItem",
   "colour": "#a55b67",
   "mcreator": {
-    "group": 1,
+    "group": "01",
     "toolbox_id": "jei_recipes",
     "toolbox_init": [
       "<mutation inputs=\"1\"></mutation>"
@@ -55,9 +55,6 @@
         "name": "world",
         "type": "world"
       }
-    ],
-    "required_apis": [
-      "jei"
     ]
   }
 }

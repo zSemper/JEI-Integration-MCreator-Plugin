@@ -16,7 +16,7 @@
   "inputsInline": true,
   "colour": "#5ba58c",
   "mcreator": {
-    "group": "text18",
+    "group": "18",
     "toolbox_id": "jei_text",
     "toolbox_init": [
       "<value name=\"key\"><block type=\"jei_text_input\"><field name=\"text\">translation.key.name</field></block></value>"

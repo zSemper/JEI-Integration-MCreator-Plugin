@@ -66,7 +66,7 @@
   "output": "MCItem",
   "colour": "#a55b67",
   "mcreator": {
-    "group": 0,
+    "group": "00",
     "toolbox_id": "jei_vanilla",
     "inputs": [
       "r1c1",

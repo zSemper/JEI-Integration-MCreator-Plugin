@@ -16,7 +16,7 @@
   "nextStatement": null,
   "colour": "#a55ba5",
   "mcreator": {
-    "group": 099,
+    "group": "99",
     "toolbox_id": "jei_result_lists",
     "inputs": [
       "list",

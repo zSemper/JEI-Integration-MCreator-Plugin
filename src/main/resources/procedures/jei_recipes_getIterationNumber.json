@@ -1,0 +1,39 @@
+{
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "iterator",
+      "check": "RecipeIterator"
+    },
+    {
+      "type": "field_dropdown",
+      "name": "type",
+      "options": [
+        [ "Input", "Input" ],
+        [ "Output", "Output" ]
+      ]
+    },
+    {
+      "type": "field_lowercase_input",
+      "name": "name",
+      "text": "name"
+    }
+  ],
+  "inputsInline": true,
+  "output": "Number",
+  "colour": "#5b67a5",
+  "mcreator": {
+    "group": "11",
+    "toolbox_id": "jei_recipes",
+    "toolbox_init": [
+      "<value name=\"iterator\"><block deletable=\"false\" movable=\"false\" enabled=\"false\" type=\"jei_recipes_iterator\"></block></value>"
+    ],
+    "inputs": [
+      "iterator"
+    ],
+    "fields": [
+      "name",
+      "type"
+    ]
+  }
+}
