@@ -5,10 +5,10 @@
         public int getFluidStackAmount(Object fluid) {
             <#if io == "Input">
 		        if(fluid instanceof SizedFluidIngredient sized) {
-			        return sized.ingredient().isEmpty() ? 0 : sized.amount();
+			        return sized.ingredient().fluids().isEmpty() ? 0 : sized.amount();
 		        } else if(fluid instanceof Optional<?> opt && opt.isPresent()) {
 			        if(opt.get() instanceof SizedFluidIngredient sizedO) {
-					    return sizedO.ingredient().isEmpty() ? 0 : sizedO.amount();
+					    return sizedO.ingredient().fluids().isEmpty() ? 0 : sizedO.amount();
 			        }
 		        }
 		        return 0;
