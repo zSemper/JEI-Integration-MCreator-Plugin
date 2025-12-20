@@ -1,11 +1,14 @@
 global_templates:
   - template: recipe_type/type_registry.java.ftl
     name: "@SRCROOT/@BASEPACKAGEPATH/init/@JavaModNameRecipeTypes.java"
+  - template: recipe_type/recipe_utils.java.ftl
+    name: "@SRCROOT/@BASEPACKAGEPATH/recipe/RecipeUtils.java"
   - template: recipe_type/jei_plugin.java.ftl
     name: "@SRCROOT/@BASEPACKAGEPATH/init/@JavaModNameJeiPlugin.java"
     condition: ${settings.getMCreatorDependenciesRaw()?seq_contains("jei")}
-  - template: recipe_type/recipe_utils.java.ftl
-    name: "@SRCROOT/@BASEPACKAGEPATH/recipe/RecipeUtils.java"
+  - template: recipe_type/abstract_jei_category.java.ftl
+    name: "@SRCROOT/@BASEPACKAGEPATH/integration/jei/AbstractJeiCategory.java"
+    condition: ${settings.getMCreatorDependenciesRaw()?seq_contains("jei")}
 
 templates:
   - template: recipe_type/recipe.java.ftl
