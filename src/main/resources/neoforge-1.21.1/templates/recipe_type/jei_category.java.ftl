@@ -1,56 +1,23 @@
-<#include "../mcitems.ftl">
-
 package ${package}.integration.jei;
 
-import mezz.jei.api.recipe.RecipeType;
+<#include "../mcitems.ftl">
 
-import java.util.Optional;
-import java.util.List;
-
-public class ${name}JeiCategory implements IRecipeCategory<RecipeHolder<${name}Recipe>> {
-    public static final ResourceLocation UID = ResourceLocation.parse("${modid}:${data.getModElement().getRegistryName()}");
-    public static final ResourceLocation TEXTURE = ResourceLocation.parse("${modid}:textures/screens/${data.texture}.png");
-
-    private final IDrawable background;
-    private final IDrawable icon;
-
+public class ${name}JeiCategory extends AbstractJeiCategory<RecipeHolder<${name}Recipe>> {
     public ${name}JeiCategory(IGuiHelper helper) {
-        this.background = helper.createDrawable(TEXTURE, ${data.x}, ${data.y}, ${data.width}, ${data.height});
-        <#if data.icon == "">
-            this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(Blocks.BARRIER));
-        <#else>
-            this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK,${mappedMCItemToItemStackCode(data.icon)});
-        </#if>
+        super(
+            ${JavaModName}JeiPlugin.${data.getModElement().getRegistryName()?c_upper_case}_JEI_CATEGORY,
+            "jei.${modid}.${data.getModElement().getRegistryName()}",
+            helper.createDrawable(ResourceLocation.parse("${modid}:textures/screens/${data.texture}.png"), ${data.x}, ${data.y}, ${data.width}, ${data.height}),
+            <#if data.icon == "">
+                helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(Blocks.BARRIER))
+            <#else>
+                helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, ${mappedMCItemToItemStackCode(data.icon)})
+            </#if>
+        );
     }
 
     @Override
-    public RecipeType<RecipeHolder<${name}Recipe>> getRecipeType() {
-        return ${JavaModName}JeiPlugin.${name}CategoryType;
-    }
-
-    @Override
-    public Component getTitle() {
-        return Component.translatable("jei.${modid}.${data.getModElement().getRegistryName()}");
-    }
-
-    @Override
-    public IDrawable getIcon() {
-        return this.icon;
-    }
-
-    @Override
-    public int getWidth() {
-        return this.background.getWidth();
-    }
-
-    @Override
-    public int getHeight() {
-        return this.background.getHeight();
-    }
-
-    @Override
-    public void draw(RecipeHolder<${name}Recipe> recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
-        this.background.draw(guiGraphics);
+    public void draw(RecipeHolder<${name}Recipe> recipe, GuiGraphics guiGraphics, double mouseX, double mouseY) {
         <#if data.enableRendering>
             Font font = Minecraft.getInstance().font;
             long ticks = Minecraft.getInstance().level.getGameTime();
@@ -67,7 +34,7 @@ public class ${name}JeiCategory implements IRecipeCategory<RecipeHolder<${name}R
     }
 
     @Override
-    public void setRecipe(IRecipeLayoutBuilder builder, RecipeHolder<${name}Recipe> recipe, IFocusGroup focuses) {
+    public void setRecipe(IRecipeLayoutBuilder builder, RecipeHolder<${name}Recipe> recipe) {
         <#list data.slotList as slot>
             <#if slot.io == "Input">
                 <#if slot.type == "Item">
