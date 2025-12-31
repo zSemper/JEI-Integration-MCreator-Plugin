@@ -1,3 +1,1 @@
-(
-    ${field$number}
-)
+${field$number}

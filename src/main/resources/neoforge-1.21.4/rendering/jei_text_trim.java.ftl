@@ -1,3 +1,1 @@
-(
-    ${input$text}.strip()
-)
+${input$text}.strip()

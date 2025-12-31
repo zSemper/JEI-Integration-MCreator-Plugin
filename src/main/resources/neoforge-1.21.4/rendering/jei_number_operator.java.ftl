@@ -10,6 +10,4 @@
     <#assign code = r1 + field$operator + r2>
 </#if>
 
-(
-    ${code}
-)
+(${code})

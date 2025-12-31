@@ -1,3 +1,1 @@
-(
-    ${input$text}.toLowerCase()
-)
+${input$text}.toLowerCase()

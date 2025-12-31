@@ -1,0 +1,1 @@
+RecipeUtils.unwrap(recipe.value().${field$name}FluidOutput(), FluidStack.class, FluidStack.EMPTY)

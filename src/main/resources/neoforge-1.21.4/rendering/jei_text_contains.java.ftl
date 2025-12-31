@@ -1,3 +1,1 @@
-(
-    ${input$text}.contains(${input$contains})
-)
+${input$text}.contains(${input$contains})

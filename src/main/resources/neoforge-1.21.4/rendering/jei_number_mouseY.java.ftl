@@ -1,3 +1,1 @@
-(
-    mouseY
-)
+mouseY

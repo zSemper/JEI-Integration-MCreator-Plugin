@@ -4,6 +4,4 @@
 
 <#assign code = codeEvt + "(" + num + ")">
 
-(
-    ${code}
-)
+${code}

@@ -1,24 +1,22 @@
 <#assign io = field$io>
 
-(
-    new Object(){
-        public int getItemStackAmount(Object item) {
-            <#if io == "Input">
-                if(item instanceof SizedIngredient sized) {
+<#if io == "Input">
+    new Object() {
+        int getItemStackAmount(Object item) {
+            if (item instanceof SizedIngredient sized) {
+                return sized.ingredient().isEmpty() ? 0 : sized.count();
+            } else if (item instanceof Ingredient ingre) {
+                return ingre.isEmpty() ? 0 : 1;
+            } else if (item instanceof Optional<?> opt && opt.isPresent) {
+                if (opt.get() instanceof SizedIngredient sized) {
                     return sized.ingredient().isEmpty() ? 0 : sized.count();
-                } else if(item instanceof Ingredient ingre) {
+                } else if (opt.get() instanceof Ingredient ingre) {
                     return ingre.isEmpty() ? 0 : 1;
-                } else if(item instanceof Optional<?> opt && opt.isPresent()) {
-                    if(opt.get() instanceof SizedIngredient sizedO) {
-                        return sizedO.ingredient().isEmpty() ? 0 : sizedO.count();
-                    } else if(opt.get() instanceof Ingredient ingreO) {
-                        return ingreO.isEmpty() ? 0 : 1;
-                    }
                 }
-                return 0;
-            <#elseif io == "Output">
-                return RecipeUtils.unwrap(recipe.value().${field$name}Item${io}(), ItemStack.class, ItemStack.EMPTY).getCount();
-            </#if>
+            }
+            return 0;
         }
     }.getItemStackAmount(recipe.value().${field$name}Item${io}())
-)
+<#elseif io == "Output">
+    RecipeUtils.unwrap(recipe.value().${field$name}Item${io}(), ItemStack.class, ItemStack.EMPTY).getCount()
+</#if>

@@ -1,0 +1,18 @@
+{
+  "args0": [
+    {
+      "type": "field_lowercase_input",
+      "name": "name",
+      "text": "name"
+    }
+  ],
+  "output": "MCItem",
+  "colour": "#a55b67",
+  "mcreator": {
+    "group": "03",
+    "toolbox_id": "jei_category_variables",
+    "fields": [
+      "name"
+    ]
+  }
+}

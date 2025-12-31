@@ -1,3 +1,1 @@
-(
-    ${input$if} ? ${input$then} : ${input$else}
-)
+${input$if} ? ${input$then} : ${input$else}

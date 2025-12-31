@@ -18,7 +18,6 @@
   "colour": "#00c8d5",
   "mcreator": {
     "group": "07",
-    "toolbox_id": "jei_category_variables",
     "fields": [
       "io",
       "name"

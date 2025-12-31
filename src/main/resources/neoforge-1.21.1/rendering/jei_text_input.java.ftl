@@ -1,3 +1,1 @@
-(
-    "${field$text}"
-)
+"${field$text}"

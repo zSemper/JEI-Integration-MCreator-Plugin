@@ -1,3 +1,1 @@
-(
-    RecipeUtils.unwrap(recipe.value().${field$name}Logic${field$io}(), boolean.class, false)
-)
+RecipeUtils.unwrap(recipe.value().${field$name}Logic${field$io}(), Boolean.class, false)

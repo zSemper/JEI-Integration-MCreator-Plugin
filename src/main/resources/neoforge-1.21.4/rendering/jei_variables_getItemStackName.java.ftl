@@ -17,7 +17,7 @@
                 }
                 return "";
             <#elseif io == "Output">
-                return RecipeUtils.unwrap(recipe.value().${field$name}Item${io}(), ItemStack.class, ItemStack.EMPTY).getHoverName().getString();
+                return ;
             </#if>
         }
     }.getItemStackName(recipe.value().${field$name}Item${io}())

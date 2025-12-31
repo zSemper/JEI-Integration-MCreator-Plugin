@@ -1,3 +1,1 @@
-(
-    RecipeUtils.unwrap(${input$iterator}.${field$name}Logic${field$type}(), boolean.class, false)
-)
+RecipeUtils.unwrap(${input$iterator}.${field$name}Logic${field$type}(), Boolean.class, false)
