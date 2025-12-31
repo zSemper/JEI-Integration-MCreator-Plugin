@@ -1,3 +1,1 @@
-(
-    ${field$bool}
-)
+${field$bool}

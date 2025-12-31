@@ -1,3 +1,1 @@
-(
-    ${input$text}.substring(${input$from}, ${input$to})
-)
+${input$text}.substring(${input$from}, ${input$to})

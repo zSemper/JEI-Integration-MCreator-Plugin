@@ -1,3 +1,1 @@
-{
-    ${input$arraylist}.addAll(${input$list});
-}
+${input$arraylist}.addAll(${input$list});

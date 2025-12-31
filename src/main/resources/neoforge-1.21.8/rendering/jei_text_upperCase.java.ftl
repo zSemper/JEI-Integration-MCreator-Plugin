@@ -1,3 +1,1 @@
-(
-    ${input$text}.toUpperCase()
-)
+${input$text}.toUpperCase()

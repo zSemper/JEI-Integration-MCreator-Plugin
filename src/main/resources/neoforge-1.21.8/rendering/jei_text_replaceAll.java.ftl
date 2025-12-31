@@ -1,3 +1,1 @@
-(
-    ${input$text}.replaceAll(${input$replace}, ${input$with})
-)
+${input$text}.replaceAll(${input$replace}, ${input$with})

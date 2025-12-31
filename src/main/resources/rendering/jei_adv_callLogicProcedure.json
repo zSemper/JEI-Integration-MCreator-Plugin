@@ -1,0 +1,42 @@
+{
+  "args0" : [
+    {
+      "type": "field_data_list_selector",
+      "name": "procedure",
+      "datalist": "procedure_retval_boolean"
+    },
+    {
+      "type": "field_input",
+      "name": "dependencies"
+    }
+  ],
+  "extensions": [
+    "procedure_dependencies_tooltip",
+    "procedure_dependencies_onchange_mixin_modified"
+  ],
+  "mutator": "procedure_dependencies_mutator",
+  "inputsInline": false,
+  "output": "Boolean",
+  "colour": "#5b80a5",
+  "mcreator": {
+    "group": "02",
+    "toolbox_id": "jei_advanced",
+    "fields": [
+      "procedure",
+      "dependencies"
+    ],
+    "repeating_inputs": [
+      {
+        "name": "arg"
+      }
+    ],
+    "repeating_fields": [
+      {
+        "name": "name",
+        "field_definition": {
+          "type": "field_input"
+        }
+      }
+    ]
+  }
+}

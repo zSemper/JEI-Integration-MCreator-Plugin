@@ -1,3 +1,1 @@
-(
-    ${input$text}.length()
-)
+${input$text}.length()

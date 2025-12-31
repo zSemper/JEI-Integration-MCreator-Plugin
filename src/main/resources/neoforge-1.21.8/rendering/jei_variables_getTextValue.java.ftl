@@ -1,3 +1,1 @@
-(
-    RecipeUtils.unwrap(recipe.value().${field$name}Text${field$io}(), String.class, "")
-)
+RecipeUtils.unwrap(recipe.value().${field$name}Text${field$io}(), String.class, "")

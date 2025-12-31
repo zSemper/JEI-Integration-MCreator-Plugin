@@ -1,3 +1,1 @@
-(
-    ${input$text}.replace(${input$replace}, ${input$with})
-)
+${input$text}.replace(${input$replace}, ${input$with})

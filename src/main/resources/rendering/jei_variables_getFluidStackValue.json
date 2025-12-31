@@ -1,0 +1,18 @@
+{
+  "args0": [
+    {
+      "type": "field_lowercase_input",
+      "name": "name",
+      "text": "name"
+    }
+  ],
+  "output": "FluidStack",
+  "colour": "#00c8d5",
+  "mcreator": {
+    "group": "06",
+    "toolbox_id": "jei_category_variables",
+    "fields": [
+      "name"
+    ]
+  }
+}

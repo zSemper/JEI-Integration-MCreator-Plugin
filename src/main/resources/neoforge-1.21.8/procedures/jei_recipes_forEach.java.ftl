@@ -1,10 +1,10 @@
 <#include "mcitems.ftl">
+
 <#assign recipeName = field$recipe?replace("CUSTOM:", "")>
 <#assign typeArray = field_list$type>
 <#assign nameArray = field_list$name>
 
-
-for(${recipeName}Recipe recipeIterator : RecipeUtils.getRecipes(world, ${recipeName}Recipe.Type.INSTANCE)) {
+for (${recipeName}Recipe recipeIterator : RecipeUtils.getRecipes(world, ${recipeName}Recipe.Type.INSTANCE)) {
     boolean _itemMatch${cbi} = true
         <#list input_list$entry as entry>
             <#assign i = entry?index>
@@ -55,7 +55,7 @@ for(${recipeName}Recipe recipeIterator : RecipeUtils.getRecipes(world, ${recipeN
         </#list>
     ;
 
-    if(_itemMatch${cbi} && _fluidMatch${cbi} && _logicMatch${cbi} && _numberMatch${cbi} && _textMatch${cbi}) {
+    if (_itemMatch${cbi} && _fluidMatch${cbi} && _logicMatch${cbi} && _numberMatch${cbi} && _textMatch${cbi}) {
         ${statement$foreach}
     }
 }

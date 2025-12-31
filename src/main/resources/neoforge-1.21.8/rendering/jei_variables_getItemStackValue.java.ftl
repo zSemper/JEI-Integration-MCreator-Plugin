@@ -1,0 +1,1 @@
+RecipeUtils.unwrap(recipe.value().${field$name}ItemOutput(), ItemStack.class, ItemStack.EMPTY)

@@ -1,5 +1,3 @@
-{
-    for(${field$type} outputIterator : ${input$list}) {
-        ${statement$foreach}
-    }
+for (${field$type} outputIterator : ${input$list}) {
+    ${statement$foreach}
 }

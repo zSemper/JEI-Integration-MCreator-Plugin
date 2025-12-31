@@ -1,3 +1,1 @@
-(
-    ${input$text}.matches(${input$match})
-)
+${input$text}.matches(${input$match})

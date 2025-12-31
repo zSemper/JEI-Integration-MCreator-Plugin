@@ -1,3 +1,1 @@
-(
-    ${input$list}.isEmpty()
-)
+${input$list}.isEmpty()

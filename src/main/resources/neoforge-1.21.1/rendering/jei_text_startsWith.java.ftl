@@ -1,3 +1,1 @@
-(
-    ${input$text}.startsWith(${input$start})
-)
+${input$text}.startsWith(${input$start})
