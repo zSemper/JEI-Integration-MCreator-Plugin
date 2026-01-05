@@ -1,4 +1,4 @@
-package.${package}.integration.jei;
+package ${package}.integration.jei;
 
 import mezz.jei.api.recipe.RecipeType;
 

@@ -1,4 +1,4 @@
-package.${package}.integration.jei;
+package ${package}.integration.jei;
 
 public abstract class AbstractJeiCategory<T> implements IRecipeCategory<T> {
     private final IRecipeType<T> recipeType;
