@@ -8,14 +8,29 @@ public abstract class AbstractJeiCategory<T> implements IRecipeCategory<T> {
 
     public AbstractJeiCategory(IRecipeType<T> recipeType, String title, IDrawable background, IDrawable icon) {
         this.recipeType = recipeType;
-        this.title = Component.translatable(title);
+        this.title = Component.translatable("jei.${modid}." + title);
         this.background = background;
         this.icon = icon;
+    }
+
+    protected static IDrawable background(IGuiHelper helper, String id, int u, int v, int width, int height) {
+        var bid = ResourceLocation.fromNamespaceAndPath("${modid}", "textures/screens/" + id + ".png");
+        return helper.createDrawable(bid, u, v, width, height);
+    }
+
+    protected static IDrawable icon(IGuiHelper helper, ItemLike item) {
+        return helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(item));
     }
 
     @Override
     public final IRecipeType<T> getRecipeType() {
         return recipeType;
+    }
+
+    public abstract Item[] getCatalysts();
+
+    protected static Item[] catalysts(Item... items) {
+        return items;
     }
 
     @Override

@@ -1,9 +1,7 @@
 package ${package}.recipe;
 
 public class RecipeUtils {
-    private RecipeUtils() {
-        throw new AssertionError("Recipe Utils should NEVER be initialized");
-    }
+    private RecipeUtils() {}
 
     // Returns a list of all recipes from the given recipe type
     public static <I extends RecipeInput, R extends Recipe<I>> List<R> getRecipes(LevelAccessor world, RecipeType<R> type) {

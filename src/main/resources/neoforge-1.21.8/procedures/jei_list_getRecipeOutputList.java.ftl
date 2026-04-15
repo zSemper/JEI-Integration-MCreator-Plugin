@@ -28,7 +28,7 @@ new Object() {
         List<${field$type}> resultList = new ArrayList<>();
         boolean recipeInputNotConsumed = true;
 
-        for (${recipeName}Recipe recipe : RecipeUtils.getRecipes(world, ${recipeName}Recipe.Type.INSTANCE)) {
+        for (${recipeName}Recipe recipe : RecipeUtils.getRecipes(world, ${JavaModName}RecipeTypes.${recipeName?c_upper_case}_TYPE.get())) {
             boolean _itemMatch = true
                 <#list input_list$entry as entry>
                     <#assign i = entry?index>

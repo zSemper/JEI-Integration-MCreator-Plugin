@@ -2,18 +2,60 @@ package ${package}.integration.jei;
 
 <#include "../mcitems.ftl">
 
+import mezz.jei.api.recipe.RecipeType;
+
 public class ${name}JeiCategory extends AbstractJeiCategory<RecipeHolder<${name}Recipe>> {
     public ${name}JeiCategory(IGuiHelper helper) {
         super(
-            ${JavaModName}JeiPlugin.${data.getModElement().getRegistryName()?c_upper_case}_JEI_CATEGORY,
-            "jei.${modid}.${data.getModElement().getRegistryName()}",
-            helper.createDrawable(ResourceLocation.parse("${modid}:textures/screens/${data.texture}.png"), ${data.x}, ${data.y}, ${data.width}, ${data.height}),
+            RecipeType.createFromVanilla(${JavaModName}RecipeTypes.${data.getModElement().getRegistryName()?c_upper_case}_TYPE.get()),
+            "${data.getModElement().getRegistryName()}",
+            background(helper, "${data.texture}", ${data.x}, ${data.y}, ${data.width}, ${data.height}),
             <#if data.icon == "">
-                helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(Blocks.BARRIER))
+                icon(helper, Blocks.BARRIER)
             <#else>
-                helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, ${mappedMCItemToItemStackCode(data.icon)})
+                icon(helper, ${data.icon})
             </#if>
         );
+    }
+
+    @Override
+    public Item[] getCatalysts() {
+        return catalysts(
+            <#list data.tables as table>
+                ${mappedMCItemToItem(table)}<#sep>,
+            </#list>
+        );
+    }
+
+    @Override
+    public void setRecipe(IRecipeLayoutBuilder builder, RecipeHolder<${name}Recipe> recipe) {
+        <#list data.slotList as slot>
+            <#if slot.io == "Input">
+                <#if slot.type == "Item">
+                    builder.addSlot(RecipeIngredientRole.INPUT, ${slot.x}, ${slot.y}).addIngredients(VanillaTypes.ITEM_STACK, RecipeUtils.getItemStacks(recipe.value().${slot.name}ItemInput()));
+                <#elseif slot.type == "Fluid">
+                    builder.addSlot(RecipeIngredientRole.INPUT, ${slot.x}, ${slot.y}).addIngredients(NeoForgeTypes.FLUID_STACK, RecipeUtils.getFluidStacks(recipe.value().${slot.name}FluidInput()))
+                    <#if slot.fullTank>
+                        .setFluidRenderer(${slot.tankCapacity}, false, 16, ${slot.height});
+                    <#else>
+                        .setFluidRenderer(1, false, 16, ${slot.height});
+                    </#if>
+                </#if>
+            <#elseif slot.io == "Output">
+                <#if slot.type == "Item">
+                    builder.addSlot(RecipeIngredientRole.OUTPUT, ${slot.x}, ${slot.y}).addItemStack(recipe.value().getItemStackResult("${slot.name}"));
+                <#elseif slot.type == "Fluid">
+                    builder.addSlot(RecipeIngredientRole.OUTPUT, ${slot.x}, ${slot.y}).addFluidStack(recipe.value().getFluidStackResult("${slot.name}").getFluid(), (long) recipe.value().getFluidStackResult("${slot.name}").getAmount())
+                    <#if slot.fullTank>
+                        .setFluidRenderer(${slot.tankCapacity}, false, 16, ${slot.height});
+                    <#else>
+                        .setFluidRenderer(1, false, 16, ${slot.height});
+                    </#if>
+                </#if>
+            <#elseif slot.io == "Custom">
+                ${slot.custom}
+            </#if>
+        </#list>
     }
 
     @Override
@@ -31,37 +73,5 @@ public class ${name}JeiCategory extends AbstractJeiCategory<RecipeHolder<${name}
 
             ${code}
         </#if>
-    }
-
-    @Override
-    public void setRecipe(IRecipeLayoutBuilder builder, RecipeHolder<${name}Recipe> recipe) {
-        <#list data.slotList as slot>
-            <#if slot.io == "Input">
-                <#if slot.type == "Item">
-                    builder.addSlot(RecipeIngredientRole.INPUT, ${slot.x}, ${slot.y}).addIngredients(VanillaTypes.ITEM_STACK, RecipeUtils.getItemStacks(recipe.value().${slot.name}ItemInput()));
-                <#elseif slot.type == "Fluid">
-                    builder.addSlot(RecipeIngredientRole.INPUT, ${slot.x}, ${slot.y}).addIngredients(NeoForgeTypes.FLUID_STACK, RecipeUtils.getFluidStacks(recipe.value().${slot.name}FluidInput()))
-                    <#if slot.fullTank>
-                        .setFluidRenderer(${slot.tankCapacity}, false, 16, ${slot.height});
-                    <#else>
-                        .setFluidRenderer(1, false, 16, ${slot.height});
-                    </#if>
-
-                </#if>
-            <#elseif slot.io == "Output">
-                <#if slot.type == "Item">
-                    builder.addSlot(RecipeIngredientRole.OUTPUT, ${slot.x}, ${slot.y}).addItemStack(recipe.value().getItemStackResult("${slot.name}"));
-                <#elseif slot.type == "Fluid">
-                    builder.addSlot(RecipeIngredientRole.OUTPUT, ${slot.x}, ${slot.y}).addFluidStack(recipe.value().getFluidStackResult("${slot.name}").getFluid(), (long) recipe.value().getFluidStackResult("${slot.name}").getAmount())
-                    <#if slot.fullTank>
-                        .setFluidRenderer(${slot.tankCapacity}, false, 16, ${slot.height});
-                    <#else>
-                        .setFluidRenderer(1, false, 16, ${slot.height});
-                    </#if>
-                </#if>
-            <#elseif slot.io == "Custom">
-                ${slot.custom}
-            </#if>
-        </#list>
     }
 }

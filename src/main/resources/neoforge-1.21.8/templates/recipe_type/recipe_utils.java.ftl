@@ -1,9 +1,7 @@
 package ${package}.recipe;
 
 public class RecipeUtils {
-    private RecipeUtils() {
-        throw new AssertionError("Recipe Utils should NEVER be initialized");
-    }
+    private RecipeUtils() {}
 
     // Returns a list of all recipes from the given recipe type
     public static <I extends RecipeInput, R extends Recipe<I>> List<R> getRecipes(LevelAccessor world, RecipeType<R> type) {
@@ -12,7 +10,7 @@ public class RecipeUtils {
         if(world instanceof ServerLevel serverLevel) {
             recipes.addAll(serverLevel.recipeAccess().recipeMap().byType(type).stream().map(RecipeHolder::value).toList());
         } else if(world instanceof ClientLevel) {
-            recipes.addAll(${JavaModName}RecipeTypes.recipeMap.byType(type).stream().map(RecipeHolder::value).toList());
+            recipes.addAll(${JavaModName}RecipeTypes.getRecipes(type).map(RecipeHolder::value).toList());
         }
 
         return recipes;
@@ -169,4 +167,15 @@ public class RecipeUtils {
 
 		return 0;
 	}
+
+	public static int getTooltipX() {
+	    Minecraft minecraft = Minecraft.getInstance();
+	    return (int) minecraft.mouseHandler.getScaledXPos(minecraft.getWindow());
+	}
+
+	public static int getTooltipY() {
+	    Minecraft minecraft = Minecraft.getInstance();
+	    return (int) minecraft.mouseHandler.getScaledXPos(minecraft.getWindow());
+	}
+
 }

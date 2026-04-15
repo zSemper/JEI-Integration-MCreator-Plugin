@@ -10,7 +10,7 @@ public class ElementLoader {
     public static ModElementType<?> RECIPE;
 
     /*
-     * Information Mod Element will be removed for version mcreator 2025.4/2026.1
+     * Information Mod Element will be removed for version mcreator 2026.2
      * and will be moved together with requested and unreleased features into its own plugin
      * as it does not fit the style and future plans of this plugin anymore.
      */

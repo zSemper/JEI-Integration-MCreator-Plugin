@@ -18,13 +18,11 @@ import net.mcreator.workspace.references.TextureReference;
 import net.zsemper.jeii.utils.Constants;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 
 public class RecipeType extends GeneratableElement {
     public String name;
+
     // JEI Texture
     @TextureReference(TextureType.SCREEN)
     public TextureHolder texture;
@@ -73,6 +71,76 @@ public class RecipeType extends GeneratableElement {
         public boolean defaultBoolean;
         public double defaultDouble;
         public String defaultString;
+
+        private String buildPure() {
+            return name + type + io;
+        }
+
+        public String buildVar() {
+            String output = "";
+            switch (type) {
+                case "Item" -> {
+                    if (io.equals("Input")) {
+                        if (singleItem) {
+                            if (optional) {
+                                output = "Optional<Ingredient> " + buildPure();
+                            } else {
+                                output = "Ingredient " + buildPure();
+                            }
+                        } else {
+                            if (optional) {
+                                output = "Optional<SizedIngredient> " + buildPure();
+                            } else {
+                                output = "SizedIngredient " + buildPure();
+                            }
+                        }
+                    } else if (io.equals("Output")) {
+                        if (optional) {
+                            output = "Optional<ItemStack> " + buildPure();
+                        } else {
+                            output = "ItemStack " + buildPure();
+                        }
+                    }
+                }
+                case "Fluid" -> {
+                    if (io.equals("Input")) {
+                        if (optional) {
+                            output = "Optional<SizedFluidIngredient> " + buildPure();
+                        } else {
+                            output = "SizedFluidIngredient " + buildPure();
+                        }
+                    } else if (io.equals("Output")) {
+                        if (optional) {
+                            output = "Optional<FluidStack> " + buildPure();
+                        } else {
+                            output = "FluidStack " + buildPure();
+                        }
+                    }
+                }
+                case "Logic" -> output = "boolean " + buildPure();
+                case "Number" -> output = "double " + buildPure();
+                case "Text" -> output = "String " + buildPure();
+            }
+            return output;
+        }
+    }
+
+    @SuppressWarnings("unused") // Used in recipe.java.ftl to get all variables
+    public List<String> getRecipeVars() {
+        List<String> vars = new ArrayList<>();
+        for (var entry : slotList) {
+            vars.add(entry.buildVar());
+        }
+        return vars;
+    }
+
+    @SuppressWarnings("unused") // Used in recipe.java.ftl to get all pure variable names
+    public List<String> getRecipePures() {
+        List<String> pure = new ArrayList<>();
+        for (var entry : slotList) {
+            pure.add(entry.buildPure());
+        }
+        return pure;
     }
 
     public static class ClickListEntry {
@@ -90,18 +158,19 @@ public class RecipeType extends GeneratableElement {
         super(element);
     }
 
-    public Map<String, Boolean> getSingleIngredients() {
-        Map<String, Boolean> holder = new HashMap<>();
-        for (SlotListEntry entry : slotList) {
-            if (entry.type.equals("Input")) {
-                holder.put(entry.name, entry.singleItem);
-            }
-        }
-        return holder;
-    }
-
+    @SuppressWarnings("unused") // Used in recipe_type.definition.yaml for translation
     public String getTitle() {
         return title;
+    }
+
+    @SuppressWarnings("unused") // Used in recipe.java.ftl to only include output getter methods that are needed
+    public boolean hasOutputType(String type) {
+        for (var entry : slotList) {
+            if (entry.type.equals(type) && entry.io.equals("Output")) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

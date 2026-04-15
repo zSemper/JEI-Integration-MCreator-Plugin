@@ -5,33 +5,24 @@ package ${package}.integration.jei;
 public class ${name}JeiCategory extends AbstractJeiCategory<RecipeHolder<${name}Recipe>> {
     public ${name}JeiCategory(IGuiHelper helper) {
         super(
-            ${JavaModName}JeiPlugin.${data.getModElement().getRegistryName()?c_upper_case}_JEI_CATEGORY,
-            "jei.${modid}.${data.getModElement().getRegistryName()}",
-            helper.createDrawable(ResourceLocation.parse("${modid}:textures/screens/${data.texture}.png"), ${data.x}, ${data.y}, ${data.width}, ${data.height}),
+            IRecipeType.create(${JavaModName}RecipeTypes.${data.getModElement().getRegistryName()?c_upper_case}_TYPE.get()),
+            "${data.getModElement().getRegistryName()}",
+            background(helper, "${data.texture}", ${data.x}, ${data.y}, ${data.width}, ${data.height}),
             <#if data.icon == "">
-                helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(Blocks.BARRIER))
+                icon(helper, Blocks.BARRIER)
             <#else>
-                helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, ${mappedMCItemToItemStackCode(data.icon)})
+                icon(helper, ${data.icon})
             </#if>
         );
     }
 
     @Override
-    public void draw(RecipeHolder<${name}Recipe> recipe, GuiGraphics guiGraphics, double mouseX, double mouseY) {
-        <#if data.enableRendering>
-            Minecraft minecraft = Minecraft.getInstance();
-            int tooltipX = (int) minecraft.mouseHandler.getScaledXPos(minecraft.getWindow());
-            int tooltipY = (int) minecraft.mouseHandler.getScaledYPos(minecraft.getWindow());
-
-            <#list data.slotList as slot>
-                <#if slot.io == "Render">
-                    ResourceLocation ${slot.name}Resource = ResourceLocation.parse("${modid}:textures/screens/${slot.resource}.png");
-                    int ${slot.name}Width = ${slot.resourceWidth}, ${slot.name}Height = ${slot.resourceHeight};
-                </#if>
+    public Item[] getCatalysts() {
+        return catalysts(
+            <#list data.tables as table>
+                ${mappedMCItemToItem(table)}<#sep>,
             </#list>
-
-            ${code}
-        </#if>
+        );
     }
 
     @Override
@@ -47,7 +38,6 @@ public class ${name}JeiCategory extends AbstractJeiCategory<RecipeHolder<${name}
                     <#else>
                         .setFluidRenderer(1, false, 16, ${slot.height});
                     </#if>
-
                 </#if>
             <#elseif slot.io == "Output">
                 <#if slot.type == "Item">
@@ -64,5 +54,23 @@ public class ${name}JeiCategory extends AbstractJeiCategory<RecipeHolder<${name}
                 ${slot.custom}
             </#if>
         </#list>
+    }
+
+    @Override
+    public void draw(RecipeHolder<${name}Recipe> recipe, GuiGraphics guiGraphics, double mouseX, double mouseY) {
+        <#if data.enableRendering>
+            Minecraft minecraft = Minecraft.getInstance();
+            int tooltipX = RecipeUtils.getTooltipX();
+            int tooltipY = RecipeUtils.getTooltipY();
+
+            <#list data.slotList as slot>
+                <#if slot.io == "Render">
+                    ResourceLocation ${slot.name}Resource = ResourceLocation.parse("${modid}:textures/screens/${slot.resource}.png");
+                    int ${slot.name}Width = ${slot.resourceWidth}, ${slot.name}Height = ${slot.resourceHeight};
+                </#if>
+            </#list>
+
+            ${code}
+        </#if>
     }
 }

@@ -4,7 +4,7 @@
 <#assign typeArray = field_list$type>
 <#assign nameArray = field_list$name>
 
-for (${recipeName}Recipe recipeIterator : RecipeUtils.getRecipes(world, ${recipeName}Recipe.Type.INSTANCE)) {
+for (${recipeName}Recipe recipeIterator : RecipeUtils.getRecipes(world, ${JavaModName}RecipeTypes.${recipeName?c_upper_case}_TYPE.get())) {
     boolean _itemMatch${cbi} = true
         <#list input_list$entry as entry>
             <#assign i = entry?index>

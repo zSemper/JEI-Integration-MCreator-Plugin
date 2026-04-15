@@ -2,7 +2,7 @@ import groovy.json.JsonSlurper
 
 plugins {
     id "java"
-    id "org.openjfx.javafxplugin" version "0.1.0"
+//    id "org.openjfx.javafxplugin" version "0.1.0"
 }
 
 repositories {
@@ -40,14 +40,14 @@ dependencies {
     // export group: 'org.example', name: 'example-library', version: '1.2.3'
 }
 
-javafx {
-    version = "21.0.7"
-    modules = [ "javafx.web", "javafx.swing" ]
-    configuration = "compileOnly"
-}
+//javafx {
+//    version = "21.0.7"
+//    modules = [ "javafx.web", "javafx.swing" ]
+//    configuration = "compileOnly"
+//}
 
 tasks.jar {
-    archiveFileName.set("jei_integration_v1.6.0_25.3.zip")
+    archiveFileName.set("jei_integration_v1.6.0_26.1.zip")
 
     from {
         configurations.export.collect { it.isDirectory() ? it : zipTree(it) }
