@@ -13,7 +13,7 @@ public class ${name}JeiCategory extends AbstractJeiCategory<RecipeHolder<${name}
             <#if data.icon == "">
                 icon(helper, Blocks.BARRIER)
             <#else>
-                icon(helper, ${data.icon})
+                icon(helper, ${mappedMCItemToItem(data.icon)})
             </#if>
         );
     }
