@@ -39,6 +39,7 @@ body:
       options:
         - MCreator 2025.2
         - MCreator 2025.3
+        - MCreator 2026.1
         - Other (specify in additional context)
     validations:
       required: true
