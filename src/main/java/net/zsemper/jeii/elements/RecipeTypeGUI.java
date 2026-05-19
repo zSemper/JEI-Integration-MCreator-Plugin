@@ -83,8 +83,8 @@ public class RecipeTypeGUI extends ModElementGUI<RecipeType> implements IBlockly
         texture.setOpaque(false);
         x = new JSpinner(new SpinnerNumberModel(0, 0, 256, 1));
         y = new JSpinner(new SpinnerNumberModel(0, 0, 256, 1));
-        width = new JSpinner(new SpinnerNumberModel(0, 0, 256, 1));
-        height = new JSpinner(new SpinnerNumberModel(0, 0, 256, 1));
+        width = new JSpinner(new SpinnerNumberModel(1, 1, 256, 1));
+        height = new JSpinner(new SpinnerNumberModel(1, 1, 256, 1));
 
         // JEI Outside
         icon = new MCItemHolder(mcreator, ElementUtil::loadBlocksAndItems);
@@ -165,7 +165,7 @@ public class RecipeTypeGUI extends ModElementGUI<RecipeType> implements IBlockly
             );
 
             if (!isEditingMode()) {
-                blocklyPanel.setXML("<xml xmlns=\"https://developers.google.com/blockly/xml\"><block type=\"render_start\" deletable=\"false\" x=\"40\" y=\"40\"></block></xml>");
+                blocklyPanel.setInitialXML(Constants.RENDER_XML);
             }
         });
 
@@ -346,7 +346,7 @@ public class RecipeTypeGUI extends ModElementGUI<RecipeType> implements IBlockly
         clickAreaList.setEntries(element.clickAreaList);
 
         enableRendering.setSelected(element.enableRendering);
-        blocklyPanel.addTaskToRunAfterLoaded(() -> blocklyPanel.setXML(element.renderXML));
+        blocklyPanel.setInitialXML(element.renderXML);
 
         enableJEIRequired(Constants.JEI(mcreator));
         tables.setEnabled(enableTables.isSelected() && Constants.JEI(mcreator));

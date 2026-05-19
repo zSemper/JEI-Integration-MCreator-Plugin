@@ -24,6 +24,8 @@ public final class Constants {
         return mcreator.getWorkspaceSettings().getDependencies().contains("jei");
     }
 
+    public static final String RENDER_XML = "<xml xmlns=\"https://developers.google.com/blockly/xml\"><block type=\"render_start\" deletable=\"false\" x=\"40\" y=\"40\"></block></xml>";
+
     // Wiki
     public static final String WIKI = "https://zsemper.github.io/plugins/jei_integration/elements/";
 
