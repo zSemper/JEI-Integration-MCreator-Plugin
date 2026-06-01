@@ -1,3 +1,7 @@
+Due to reasons, this plugin won't be updated anymore and is free to be picked up by someone else.
+
+---
+
 # JEI Integration
 Adds jei support to MCreator with custom recipe and recipe types, together with jei integration.
 
